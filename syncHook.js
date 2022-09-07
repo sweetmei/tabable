@@ -1,19 +1,20 @@
-// const  {SyncHook} = require('tapable')
+const  SyncHook = require('./tapable/syncHook')
 const slice = Array.prototype.slice;
-class SyncHook {
-    constructor(args){
-        this.args = args;
-        this.taps = []
-    }
-    tap(name, callback){
-        this.taps.push(callback)
-    }
-    call(){
-        this.taps.forEach(fn=>fn(slice.call(arguments, 0, this.args.length)))
-    }
-}
+// class SyncHook {
+//     constructor(args){
+//         this.args = args;
+//         this.taps = []
+//     }
+//     tap(name, callback){
+//         this.taps.push(callback)
+//     }
+//     call(){
+//         this.taps.forEach(fn=>fn(slice.call(arguments, 0, this.args.length)))
+//     }
+// }
 const hook = new SyncHook(['name','age']);
 hook.tap('1',(name,age)=>{
+    debugger
     console.log(1,name,age);
     return 1;
 });
